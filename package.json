@@ -1,12 +1,11 @@
 {
-  "name": "language-matlab-octave",
-  "version": "0.2.1",
-  "description": "Support for Matlab / Octave languages converted from TextMate Bundle",
+  "name": "language-matlab-plus",
+  "version": "0.0.0",
+  "description": "Support for Matlab language converted from TextMate Bundle",
   "keywords": [
-    "MATLAB",
-    "Octave"
+    "MATLAB"
   ],
-  "repository": "https://github.com/thedavidprice/language-matlab-octave",
+  "repository": "https://github.com/elpollodiablo84/language-matlab-plus",
   "license": "MIT",
   "engines": {
     "atom": ">=1.0.0 <2.0.0"

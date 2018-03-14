@@ -310,7 +310,7 @@ repository:
         include: "#storage"
       }
       {
-        include: "#contants"
+        include: "#constants"
       }
       {
         include: "#variables"
@@ -320,7 +320,7 @@ repository:
       }
     ]
     repository:
-      contants:
+      constants:
         comment: "MATLAB constants"
         match: "(?<!\\.)\\b(eps|false|Inf|inf|intmax|intmin|namelengthmax|NaN|nan|on|off|realmax|realmin|private|true)\\b"
         name: "constant.language.matlab"
@@ -443,7 +443,7 @@ repository:
             name: "support.function.toolbox.excel-link.matlab"
           }
           {
-            comment: "Matlab filder design hdl coder toolbox"
+            comment: "Matlab filter design hdl coder toolbox"
             match: "(?<!\\.)\\b(generatetbstimulus|generatetb|generatehdl|fdhdltool)\\b"
             name: "support.function.toolbox.filder-design-hdl-coder.matlab"
           }
@@ -880,13 +880,6 @@ repository:
         include: "$self"
       }
     ]
-  double_quote:
-    patterns: [
-      {
-        match: "\""
-        name: "invalid.illegal.invalid-quote.matlab"
-      }
-    ]
   end_in_parens:
     comment: "end as operator symbol"
     match: "\\bend\\b"
@@ -957,11 +950,11 @@ repository:
     name: "invalid.illegal.invalid-inequality.matlab"
   number:
     comment: "Valid numbers: 1, .1, 1.1, .1e1, 1.1e1, 1e1, 1i, 1j, 1e2j"
-    match: "(?<=[\\s\\-\\+\\*\\/\\\\=:\\[\\(\\{,]|^)\\d*\\.?\\d+([eE][+-]?\\d)?([0-9&&[^\\.]])*(i|j)?\\b"
+    match: "(?<=[\\s\\-\\+\\*\\/\\\\=:\\[\\(\\{,;]|^)\\d*\\.?\\d+([eE][+-]?\\d)?([0-9&&[^\\.]])*(i|j)?\\b"
     name: "constant.numeric.matlab"
   operators:
     comment: "Operator symbols"
-    match: "(?<=\\s)(==|~=|>|>=|<|<=|&|&&|:|\\||\\|\\||\\+|-|\\*|\\.\\*|/|\\./|\\\\|\\.\\\\|\\^|\\.\\^)(?=\\s)"
+    match: "(==|~=|>|>=|<|<=|&|&&|:|\\||\\|\\||\\+|-|\\*|\\.\\*|/|\\./|\\\\|\\.\\\\|\\^|\\.\\^)"
     name: "keyword.operator.symbols.matlab"
   parens:
     begin: "\\("
@@ -1018,12 +1011,42 @@ repository:
           }
         ]
       }
+      {
+        begin: "((?<=(\\[|\\(|\\{|=|\\s|;|:|,))|^)\""
+        beginCaptures:
+          "0":
+            name: "punctuation.definition.string.begin.matlab"
+        end: "\"(?=(\\]|\\)|\\}|=|~|<|>|&|\\||-|\\+|\\*|\\.|\\^|\\||\\s|;|:|,))"
+        endCaptures:
+          "0":
+            name: "punctuation.definition.string.end.matlab"
+        name: "string.quoted.double.matlab"
+        patterns: [
+          {
+            match: "\"\""
+            name: "constant.character.escape.matlab"
+          }
+          {
+            match: "\"(?=.)"
+            name: "invalid.illegal.unescaped-quote.matlab"
+          }
+          {
+            comment: "Operator symbols"
+            match: "((\\%([\\+\\-0]?\\d{0,3}(\\.\\d{1,3})?)(c|d|e|E|f|g|G|s|((b|t)?(o|u|x|X))))|\\%\\%|\\\\(b|f|n|r|t|\\\\))"
+            name: "constant.character.escape.matlab"
+          }
+        ]
+      }
     ]
   transpose:
-    match: "((\\w+)|(?<=\\])|(?<=\\)))\\.?'"
-    name: "keyword.operator.transpose.matlab"
+    match: "((\\w+)|(?<=\\])|(?<=\\))|(?<=\\}))\\.?(')"
+    captures:
+      "1":
+        name: "meta.variable.other.valid.matlab"
+      "3":
+        name: "keyword.operator.transpose.matlab"
   variable:
-    comment: "Valid variable. Added meta to disable hilightinh"
+    comment: "Valid variable. Added meta to disable hilighting"
     match: "\\b[a-zA-Z]\\w*\\b"
     name: "meta.variable.other.valid.matlab"
   variable_assignment:
