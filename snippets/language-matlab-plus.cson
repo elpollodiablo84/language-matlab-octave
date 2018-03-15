@@ -26,27 +26,15 @@
       	$0
       end
     '''
-  "^":
-    prefix: "^"
-    body: "^($1) $2"
   case:
     prefix: "case"
     body: '''
       case ${2:'${3:string}'}
       	$0
     '''
-  "disp sprintf":
-    prefix: "dsp"
-    body: "disp(sprintf('${1:%s}\\\\n'${1/([^%]|%%)*(%.)?.*/(?2:, :\\))/}$2${1/([^%]|%%)*(%.)?.*/(?2:\\))/});"
   disp:
     prefix: "disp"
     body: "disp('${1:Text}');"
-  dlmwrite:
-    prefix: "dlmwrite"
-    body: '''
-      dlmwrite('${1:filename}.dat', [${2:variables}], ${3:'${4:delimiter}', '${5:\\t}'});
-      $0
-    '''
   else:
     prefix: "else"
     body: '''
@@ -74,18 +62,15 @@
     '''
   fprintf:
     prefix: "fpr"
-    body: "fprintf(${1:fid}, '${2:%s}\\\\n'${2/([^%]|%%)*(%.)?.*/(?2:, :\\);)/}$3${2/([^%]|%%)*(%.)?.*/(?2:\\);)/}"
+    body: "fprintf(${1:fid}, '$2', $3);"
   function:
     prefix: "function"
     body: '''
-      function ${1:out} = ${2:?${TM_FILENAME/\\.m//:f}}(${3:in})
-      % ${2/.*/\\U$0/} ${4:Description}
-      %	${1/.*/\\U$0/} = ${2/.*/\\U$0/}(${6:${3/.*/\\U$0/}})
-      %
-      % ${5:Long description}
+      function ${1:out} = ${2:f}(${3:in})
+          % ${4:Description}
 
-      $0
-      end ${TM_COMMENT_START}function
+          $0
+      end
     '''
   get:
     prefix: "get"
@@ -93,18 +78,14 @@
   griddata:
     prefix: "griddata"
     body: "griddata(${1:xx}, ${2:yy}, ${3:zz}, ${4:xi}, ${5:yi}); "
-  "if … else …end":
+  "if … else … end":
     prefix: "ife"
     body: '''
       if ${1:condition}
       	$2
       else
       	$3
-      `if [[ $TM_USE_OCTAVE -ne '0' ]]
-      	then echo "endif"
-      else
-      	echo "end"
-      fi`
+      end
     '''
   "if … elseif … end":
     prefix: "ifeif"
@@ -116,7 +97,6 @@
       else
       	${5:body}
       end
-
     '''
   "if … end":
     prefix: "if"
@@ -131,27 +111,12 @@
       line(${1:xvector},${2:yvector}${3:,'Color','${4:b}','LineWidth',${5:1},'LineStyle','${6:-}'})
 
     '''
-  nargchk:
-    prefix: "nargchk"
-    body: '''
-      error(nargchk(${1:min}, ${2:max}, ${3:nargin}, `if [[ $TM_USE_OCTAVE -eq '0' ]]; then
-      	echo -n "'struct'"
-      fi` ));
-
-    '''
   set:
     prefix: "set"
     body: "set(${1:get(${2:gca},'${3:PropertyName}')},'${4:PropertyName}',${5:PropertyValue});"
-  "small function":
-    prefix: "fun"
-    body: '''
-      function ${1:out} = ${2:f}(${3:in})
-      	$0
-      end
-    '''
   sprintf:
     prefix: "spr"
-    body: "sprintf('${1:%s}\\\\n'${1/([^%]|%%)*(%.)?.*/(?2:, :\\);)/}$2${1/([^%]|%%)*(%.)?.*/(?2:\\);)/}"
+    body: "sprintf('$1','$2')"
   title:
     prefix: "zla"
     body: "set(get(gca,'Title'),'String',${1:'${2}'});"
