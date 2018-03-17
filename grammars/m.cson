@@ -628,9 +628,9 @@ repository:
         beginCaptures:
           0: name: "comment.line.double-percentage.matlab"
           1: name: "punctuation.double-percentage.comment.matlab"
-        end: "(?=^[ \\t]*(%%))"
-        patterns: [{ include: "$self" }]
-        name: "meta.section.matlab"
+        end: "$" # "(?=^[ \\t]*(%%))"
+        # patterns: [{ include: "$self" }]
+        # name: "meta.section.matlab"
       }
       {
         begin: "%\\{"
@@ -672,18 +672,18 @@ repository:
       {
         begin: """
           (?x)
-          						(^\\s*)								     # Leading whitespace
-          						(function)
-          						\\s+
-          						(?:									       # Optional
-          							(?:
-          								(\\[) ([^\\]]*) (\\])
-          							  | ([a-zA-Z_]\\w*)
-          							)
-          							\\s* = \\s*
-          						)?
-          						([a-zA-Z_]\\w*)						# Function name
-          						\\s*									    # Trailing space
+        						(^\\s*)								    # Leading whitespace
+        						(function)
+        						\\s+
+        						(?:									      # Optional
+        							(?:
+        								(\\[) ([^\\]]*) (\\])
+        							  | ([a-zA-Z_]\\w*)
+        							)
+        							\\s* = \\s*
+        						)?
+        						([a-zA-Z_]\\w*)						# Function name
+        						\\s*									    # Trailing space
 
         """
         beginCaptures:

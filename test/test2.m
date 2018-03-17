@@ -1,6 +1,9 @@
 %% Function
 function out = fun(in)
-    persistent a, index
+    persistent a index c % Comment
+    if isempty(a)
+        a = 1;
+    end
 
     in = in.^a;
     index = index + 1;
