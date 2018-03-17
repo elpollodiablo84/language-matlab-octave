@@ -3,8 +3,8 @@
     prefix: "switch"
     body: '''
       switch ${1:var}
-      case ${2:'${3:string}'}
-      	$0
+        case ${2:'${3:string}'}
+        	$0
       end
     '''
   "switch … case … otherwise … end":
@@ -75,9 +75,6 @@
   get:
     prefix: "get"
     body: "get(${1:gca},'${2:PropertyName}');"
-  griddata:
-    prefix: "griddata"
-    body: "griddata(${1:xx}, ${2:yy}, ${3:zz}, ${4:xi}, ${5:yi}); "
   "if … else … end":
     prefix: "ife"
     body: '''
@@ -120,9 +117,6 @@
   title:
     prefix: "zla"
     body: "set(get(gca,'Title'),'String',${1:'${2}'});"
-  unix:
-    prefix: "uni"
-    body: "[${1:s},${2:w}] = unix('${3:Unix commands}');"
   warning:
     prefix: "war"
     body: "warning(['${1:Description}']);"
