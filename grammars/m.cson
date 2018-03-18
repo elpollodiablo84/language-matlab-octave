@@ -10,6 +10,7 @@ patterns: [
   { include: "#brackets" }
   { include: "#curlybrackets" }
   { include: "#parens" }
+  # { include: "#persistent" }
   { include: "#string" }
   { include: "#transpose" }
   { include: "#double_quote" }
@@ -211,7 +212,7 @@ repository:
           }
           {
             comment: "Storage modifiers"
-            match: "(?<!\\.)\\b(base2dec|bin2dec|cast|cell2mat|cell2struct|cellstr|char|dec2base|dec2bin|dec2hex|hex2dec|hex2num|int2str|mat2cell|mat2str|num2cell|native2unicode|num2hex|num2str|persistent|str2double|str2func|str2mat|str2num|struct2cell|unicode2native)\\b"
+            match: "(?<!\\.)\\b(base2dec|bin2dec|cast|cell2mat|cell2struct|cellstr|char|dec2base|dec2bin|dec2hex|hex2dec|hex2num|int2str|mat2cell|mat2str|num2cell|native2unicode|num2hex|num2str|str2double|str2func|str2mat|str2num|struct2cell|unicode2native)\\b"
             name: "storage.modifier.matlab"
           }
           {
@@ -742,6 +743,17 @@ repository:
       { include: "#end_in_parens" }
       { include: "$self" }
     ]
+  persistent:
+    name: "meta.persistent.matlab"
+    begin: "(persistent)[ \\t]+(.*)"
+    beginCaptures:
+      1: name: "storage.modifier.matlab"
+      2: patterns: [
+        { include: "#variable_persistent"}
+        { include: "#variable_invalid"}
+        { include: "#comments"}
+      ]
+    end: "\\n"
   string:
     patterns: [
       {
@@ -806,9 +818,12 @@ repository:
       1: name: "meta.variable.other.valid.matlab"
       3: name: "keyword.operator.transpose.matlab"
   variable:
-    comment: "Valid variable. Added meta to disable hilighting"
+    comment: "Valid variable. Added meta to disable highlighting"
     match: "\\b[a-zA-Z]\\w*\\b"
     name: "meta.variable.other.valid.matlab"
+  variable_persistent:
+    match: "\\b[a-zA-Z]\\w*\\b"
+    name: "meta.variable.persistent.matlab"
   variable_assignment:
     comment: "Incomplete variable assignment."
     match: "=\\s*\\.{0,2}\\s*;?\\s*$\\n?"
