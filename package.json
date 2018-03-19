@@ -1,6 +1,6 @@
 {
   "name": "language-matlab-plus",
-  "version": "1.3.0",
+  "version": "1.3.1",
   "description": "Support for Matlab language converted from TextMate Bundle",
   "keywords": [
     "MATLAB"
