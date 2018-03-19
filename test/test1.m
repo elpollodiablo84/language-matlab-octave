@@ -19,14 +19,14 @@ Comment block
 %} % Comment of a comment
 
 %% if/elseif/else
-if (condition == 1)
+if (condition == 1) % comment
     body = 1;
-elseif (condition == 2)
+elseif (condition == 2) % comment
     body = 2;
 
     if (body == 2), do_that(); end
 
-else
+else % comment
     body = 3;
 end
 
@@ -37,23 +37,23 @@ end
 
 %% switch/case/otherwise
 switch var
-    case 'string'
+    case 'string' % comment
         body2 = 1;
-    otherwise
+    otherwise % comment
         body2 = 0;
 end
 
 %% try/catch
-try
+try % comment
     this();
-catch exception
+catch exception % comment
     that();
 end
 
 %% for
 for j = 1:M, do_this(); end
 
-for i = 1:n
+for i = 1:n % comment
     body = body + 1;
     for k = 1:2:N
         body = body - 1;

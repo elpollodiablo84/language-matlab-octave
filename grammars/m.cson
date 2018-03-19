@@ -75,7 +75,7 @@ repository:
           }
           {
             name: "meta.else.matlab"
-            match: "(^\\s*)(else)\\s+$\\n?"
+            match: "(^\\s*)\\b(else)\\b"
             captures:
               2: name: "keyword.control.else.matlab"
           }
@@ -118,7 +118,7 @@ repository:
           }
           {
             name: "meta.otherwise.matlab"
-            match: "(^\\s*)(otherwise)\\s+$\\n?"
+            match: "(^\\s*)(otherwise)\\b"
             captures:
               0: name: "meta.otherwise-expression.matlab"
               2: name: "keyword.control.otherwise.matlab"
@@ -127,7 +127,7 @@ repository:
         ]
       }
       {
-        begin: "(^\\s*)(try)\\s*($\\n?|%)"
+        begin: "(^\\s*)\\b(try)\\b"
         beginCaptures:
           2: name: "keyword.control.try.matlab"
         end: "^\\s*(end)\\b"
