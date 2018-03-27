@@ -1,5 +1,5 @@
 %% Function
-function out = fun(in)
+function out = fun(in, index) % Comment
     persistent a index c % Comment
     if isempty(a)
         a = 1;

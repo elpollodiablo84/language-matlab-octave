@@ -10,7 +10,7 @@ patterns: [
   { include: "#brackets" }
   { include: "#curlybrackets" }
   { include: "#parens" }
-  # { include: "#persistent" }
+  { include: "#persistent" }
   { include: "#string" }
   { include: "#transpose" }
   { include: "#double_quote" }
@@ -676,7 +676,7 @@ repository:
         						(^\\s*)								    # Leading whitespace
         						(function)
         						\\s+
-        						(?:									      # Optional
+        						(?:									      # Optional - output
         							(?:
         								(\\[) ([^\\]]*) (\\])
         							  | ([a-zA-Z_]\\w*)
@@ -685,9 +685,15 @@ repository:
         						)?
         						([a-zA-Z_]\\w*)						# Function name
         						\\s*									    # Trailing space
-
+                    (?:                       # Optional - input
+                      (?:
+        								(\\() ([^\\)]*) (\\))
+        							  | ([a-zA-Z_]\\w*)
+        							)
+                    )?
         """
         beginCaptures:
+          0: name: "meta.function.line"
           2: name: "storage.type.function.matlab"
           3: name: "punctuation.definition.arguments.begin.matlab"
           4: patterns: [
@@ -699,24 +705,19 @@ repository:
           5: name: "punctuation.definition.arguments.end.matlab"
           6: name: "variable.parameter.output.function.matlab"
           7: name: "entity.name.function.matlab"
-        end: "^\\s*(end)\\b(\\s*\\n)?"
-        endCaptures:
-          1: name: "keyword.control.end.function.matlab"
-        name: "meta.function.matlab"
-        patterns: [
-          {
-            begin: "\\G\\("
-            end: "\\)"
-            name: "meta.arguments.function.matlab"
-            patterns: [
+          8: name: "punctuation.definition.arguments.begin.matlab"
+          9: patterns: [
               {
                 match: "\\w+"
                 name: "variable.parameter.input.matlab"
               }
             ]
-          }
-          { include: "$self" }
-        ]
+          10: name: "punctuation.definition.arguments.end.matlab"
+        end: "^\\s*(end)\\b(\\s*\\n)?"
+        endCaptures:
+          1: name: "keyword.control.end.function.matlab"
+        name: "meta.function.matlab"
+        patterns: [{ include: "$self" }]
       }
     ]
   not_equal_invalid:
@@ -745,15 +746,14 @@ repository:
     ]
   persistent:
     name: "meta.persistent.matlab"
-    begin: "(persistent)[ \\t]+(.*)"
-    beginCaptures:
+    match: "(persistent)[ \\t]+(.*)"
+    captures:
       1: name: "storage.modifier.matlab"
       2: patterns: [
         { include: "#variable_persistent"}
         { include: "#variable_invalid"}
         { include: "#comments"}
       ]
-    end: "\\n"
   string:
     patterns: [
       {
@@ -817,13 +817,13 @@ repository:
     captures:
       1: name: "meta.variable.other.valid.matlab"
       3: name: "keyword.operator.transpose.matlab"
+  variable_persistent:
+    match: "\\b[a-zA-Z]\\w*\\b"
+    name: "meta.variable.persistent.matlab"
   variable:
     comment: "Valid variable. Added meta to disable highlighting"
     match: "\\b[a-zA-Z]\\w*\\b"
     name: "meta.variable.other.valid.matlab"
-  variable_persistent:
-    match: "\\b[a-zA-Z]\\w*\\b"
-    name: "meta.variable.persistent.matlab"
   variable_assignment:
     comment: "Incomplete variable assignment."
     match: "=\\s*\\.{0,2}\\s*;?\\s*$\\n?"
