@@ -23,6 +23,7 @@ patterns: [
   { include: "#not_equal_invalid" }
   { include: "#variable_assignment" }
 ]
+
 repository:
   blocks:
     patterns: [
@@ -148,6 +149,7 @@ repository:
         ]
       }
     ]
+
   brackets:
     begin: "\\["
     beginCaptures:
@@ -157,6 +159,7 @@ repository:
     endCaptures:
       0: name: "meta.brackets.matlab"
     patterns: [{ include: "$self" }]
+
   builtin_keywords:
     patterns: [
       { include: "#keywords" }
@@ -168,7 +171,7 @@ repository:
     repository:
       constants:
         comment: "MATLAB constants"
-        match: "(?<!\\.)\\b(eps|false|Inf|inf|intmax|intmin|namelengthmax|NaN|nan|on|off|realmax|realmin|true)\\b"
+        match: "(?<!\\.)\\b(eps|false|pi|Inf|inf|intmax|intmin|namelengthmax|NaN|nan|on|off|realmax|realmin|true)\\b"
         name: "constant.language.matlab"
       keywords:
         patterns: [
@@ -423,6 +426,7 @@ repository:
         comment: "MATLAB variables"
         match: "(?<!\\.)\\b(nargin|nargout|varargin|varargout)\\b"
         name: "variable.other.function.matlab"
+
   classdef:
     patterns: [
       {
@@ -622,6 +626,7 @@ repository:
         ]
       }
     ]
+
   comments:
     patterns: [
       {
@@ -635,9 +640,11 @@ repository:
       }
       {
         begin: "%\\{"
-        captures:
-          1: name: "punctuation.definition.comment.matlab"
-        end: "%\\}(.*)"
+        beginCaptures:
+          0: name: "punctuation.definition.comment.start.matlab"
+        end: "%\\}"
+        endCaptures:
+          0: name: "punctuation.definition.comment.end.matlab"
         name: "comment.block.percentage.matlab"
       }
       {
@@ -647,11 +654,20 @@ repository:
           1: name: "punctuation.single-percentage.comment.matlab"
         end: "$"
       }
+      {
+        begin: "(\\.\\.\\.).*"
+        beginCaptures:
+          0: name: "comment.line.triple-point.matlab"
+          1: name: "punctuation.triple-point.comment.matlab"
+        end: "$"
+      }
     ]
+
   constants_override:
     comment: "The user is trying to override MATLAB constants and functions."
     match: "(^|\\;)\\s*(pi|inf|Inf|nan|NaN|eps|end)\\s*=[^=]"
     name: "meta.inappropriate.matlab"
+
   curlybrackets:
     begin: "\\{"
     beginCaptures:
@@ -664,10 +680,12 @@ repository:
       { include: "#end_in_parens" }
       { include: "$self" }
     ]
+
   end_in_parens:
     comment: "end as operator symbol"
     match: "\\bend\\b"
     name: "keyword.operator.symbols.matlab"
+
   function:
     patterns: [
       {
@@ -688,50 +706,53 @@ repository:
                     (?:                       # Optional - input
                       (?:
         								(\\() ([^\\)]*) (\\))
-        							  | ([a-zA-Z_]\\w*)
         							)
                     )?
         """
         beginCaptures:
-          0: name: "meta.function.line"
+          0: name: "meta.function.$7.line.matlab"
           2: name: "storage.type.function.matlab"
           3: name: "punctuation.definition.arguments.begin.matlab"
           4: patterns: [
               {
-                match: "\\w+"
-                name: "variable.parameter.output.matlab"
+                match: "[a-zA-Z_]\\w*"
+                name: "meta.variable.parameter.output.matlab"
               }
             ]
           5: name: "punctuation.definition.arguments.end.matlab"
-          6: name: "variable.parameter.output.function.matlab"
+          6: name: "meta.variable.parameter.output.matlab"
           7: name: "entity.name.function.matlab"
           8: name: "punctuation.definition.arguments.begin.matlab"
           9: patterns: [
               {
-                match: "\\w+"
-                name: "variable.parameter.input.matlab"
+                match: "[a-zA-Z_]\\w*"
+                name: "meta.variable.parameter.input.matlab"
               }
             ]
           10: name: "punctuation.definition.arguments.end.matlab"
         end: "^\\s*(end)\\b(\\s*\\n)?"
         endCaptures:
           1: name: "keyword.control.end.function.matlab"
-        name: "meta.function.matlab"
+        contentName: "meta.function.$7.scope.matlab"
         patterns: [{ include: "$self" }]
       }
     ]
+
   not_equal_invalid:
     comment: "Not equal is written ~= not !=."
     match: "\\s*!=\\s*"
     name: "invalid.illegal.invalid-inequality.matlab"
+
   number:
     comment: "Valid numbers: 1, .1, 1.1, .1e1, 1.1e1, 1e1, 1i, 1j, 1e2j"
     match: "(?<=[\\s\\-\\+\\*\\/\\\\=:\\[\\(\\{,;]|^)\\d*\\.?\\d+([eE][+-]?\\d)?([0-9&&[^\\.]])*(i|j)?\\b"
     name: "constant.numeric.matlab"
+
   operators:
     comment: "Operator symbols"
     match: "(==|~=|>|>=|<|<=|&|&&|:|\\||\\|\\||\\+|-|\\*|\\.\\*|/|\\./|\\\\|\\.\\\\|\\^|\\.\\^)"
     name: "keyword.operator.symbols.matlab"
+
   parens:
     begin: "\\("
     beginCaptures:
@@ -744,6 +765,7 @@ repository:
       { include: "#end_in_parens" }
       { include: "$self" }
     ]
+
   persistent:
     name: "meta.persistent.matlab"
     match: "(persistent)[ \\t]+(.*)"
@@ -754,6 +776,7 @@ repository:
         { include: "#variable_invalid"}
         { include: "#comments"}
       ]
+
   string:
     patterns: [
       {
@@ -812,22 +835,27 @@ repository:
         ]
       }
     ]
+
   transpose:
     match: "((\\w+)|(?<=\\])|(?<=\\))|(?<=\\}))\\.?(')"
     captures:
       1: name: "meta.variable.other.valid.matlab"
       3: name: "keyword.operator.transpose.matlab"
+
   variable_persistent:
     match: "\\b[a-zA-Z]\\w*\\b"
     name: "meta.variable.persistent.matlab"
+
   variable:
     comment: "Valid variable. Added meta to disable highlighting"
     match: "\\b[a-zA-Z]\\w*\\b"
     name: "meta.variable.other.valid.matlab"
+
   variable_assignment:
     comment: "Incomplete variable assignment."
     match: "=\\s*\\.{0,2}\\s*;?\\s*$\\n?"
     name: "invalid.illegal.incomplete-variable-assignment.matlab"
+
   variable_invalid:
     comment: "No variables or function names can start with a number or an underscore."
     match: "\\b(_\\w|\\d+[_a-df-zA-DF-Z])\\w*\\b"
