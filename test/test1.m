@@ -56,7 +56,7 @@ end
 %% for
 for j = 1:M, do_this(); end
 
-for i = 1:n % comment
+for i = 1:n % Comment
     body = body + 1;
     for k = 1:2:N
         body = body - 1;
