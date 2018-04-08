@@ -1,13 +1,17 @@
 @import "syntax-variables";
 
+.variable-persistent {
+  background-color: white;
+}
+
 atom-text-editor {
   .syntax--source.syntax--matlab {
     .syntax--comment.syntax--line.syntax--double-percentage {
       border-top: 1px solid @syntax-selection-color;
       display: block;
     }
-    // .syntax--meta.syntax--variable.syntax--persistent {
-    //   background-color: white;
-    // }
+    .syntax--meta.syntax--variable.syntax--persistent {
+      .variable-persistent
+    }
   }
 }
