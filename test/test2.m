@@ -13,6 +13,7 @@ function out = test2(in, index_in) % Comment
 
     %% Test section in function
     out = new_fun(index, in);
+    out = secondaryFunction(out);
 
     %% Test function in function
     function y = new_fun(x, z)
@@ -21,7 +22,19 @@ function out = test2(in, index_in) % Comment
             y_old = 0;
         end
 
+        % 'a' should be highlighted
         y = x.^z + y_old + a + test;
         y_old = y;
     end
+end
+
+function y = secondaryFunction(x)
+    persistent test
+    if isempty(test)
+        test = x;
+    end
+
+    % 'index' and 'c' should not be highlighted
+    index = test;
+    y = c^2 + index;
 end
