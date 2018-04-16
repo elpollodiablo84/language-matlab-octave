@@ -1,14 +1,14 @@
 {
   "name": "language-matlab-plus",
   "version": "1.4.0",
-  "description": "Support for Matlab language converted from TextMate Bundle",
+  "description": "Matlab language support in Atom",
   "keywords": [
-    "MATLAB"
+    "MATLAB", "grammar", "language"
   ],
   "repository": "https://github.com/elpollodiablo84/language-matlab-plus",
   "license": "MIT",
   "engines": {
-    "atom": ">=1.0.0 <2.0.0"
+    "atom": ">=1.0.0"
   },
   "main": "./lib/persistent-highlight",
   "dependencies": {}

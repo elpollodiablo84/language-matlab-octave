@@ -11,9 +11,11 @@ function out = test2(in, index_in) % Comment
     index = index_in + 1;
     a = a*3 + c;
 
+    testStruct.index = index; % properties should not be highlighted
+
     %% Test section in function
     out = new_fun(index, in);
-    out = secondaryFunction(out);
+    out = secondaryFunction(out, testStruct);
 
     %% Test function in function
     function y = new_fun(x, z)

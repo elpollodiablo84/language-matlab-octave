@@ -2,14 +2,5 @@
   editor:
     tabLength: 4
     commentStart: "% "
-    increaseIndentPattern: '''
-      (?x)^\\s*
-          \\b(
-             function
-             |if|else|elseif
-             |switch|case|otherwise
-             |for|parfor|while
-             |try|catch
-      	)\\b
-    '''
+    increaseIndentPattern: "^\\s*\\b(function|if|else|elseif|switch|case|otherwise|for|parfor|while|try|catch)\\b"
     decreaseIndentPattern: "^\\s*\\b(end\\w*|catch|else|elseif|case|otherwise)\\b"

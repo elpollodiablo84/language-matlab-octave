@@ -1,15 +1,18 @@
 @import "syntax-variables";
 
 .variable-persistent {
-  // background-color: white;
   color: #82AAFF;
+}
+
+.code-section {
+  border-top: 1px solid @syntax-selection-color;
+  display: block;
 }
 
 atom-text-editor {
   .syntax--source.syntax--matlab {
     .syntax--comment.syntax--line.syntax--double-percentage {
-      border-top: 1px solid @syntax-selection-color;
-      display: block;
+      .code-section
     }
     .syntax--meta.syntax--variable.syntax--persistent {
       .variable-persistent
