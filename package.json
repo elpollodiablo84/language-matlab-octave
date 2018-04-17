@@ -1,9 +1,11 @@
 {
   "name": "language-matlab-plus",
-  "version": "1.4.0",
+  "version": "1.5.0",
   "description": "Matlab language support in Atom",
   "keywords": [
-    "MATLAB", "grammar", "language"
+    "MATLAB",
+    "grammar",
+    "language"
   ],
   "repository": "https://github.com/elpollodiablo84/language-matlab-plus",
   "license": "MIT",
