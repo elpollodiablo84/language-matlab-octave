@@ -24,7 +24,7 @@ function out = test2(in, index_in) % Comment
             y_old = 0;
         end
 
-        % 'a' should be highlighted
+        %% 'a' should be highlighted
         y = x.^z + y_old + a + test;
         y_old = y;
     end

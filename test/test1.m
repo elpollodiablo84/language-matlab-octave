@@ -39,11 +39,11 @@ end
 
 %% switch/case/otherwise
 switch variable
-case 'string' % Comment
+    case 'string' % Comment
         body2 = 1;
-    otherwise % Comment
+    otherwise     % Comment
         body2 = [0; ... This should be a comment also
-            0];
+                 0];
 end
 
 %% try/catch

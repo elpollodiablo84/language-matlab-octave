@@ -8,7 +8,12 @@ Forked from https://github.com/thedavidprice/language-matlab-octave.
 ### Features
 - A lot of corrections and optimizations from the original conversion.
 - Code sections borders.
-- Persistent variables highlighting like in the default MATLAB editor (you can change the color in the *style.less* of this package).
+- Persistent variables highlighting like in the default MATLAB editor. You can change the color in your [stylesheet](https://flight-manual.atom.io/using-atom/sections/basic-customization/#style-tweaks) adding
+~~~css
+.variable-persistent {
+  color: #82AAFF; /*Modify this value to change the color*/
+}
+~~~
 
 ### Planned Features
 - Code sections folding (*It should be doable*).

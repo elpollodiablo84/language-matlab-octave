@@ -15,6 +15,7 @@ patterns: [
   { include: "#transpose" }
   { include: "#double_quote" }
   { include: "#operators" }
+  { include: "#keyword_with_string"}
   { include: "#builtin_keywords" }
   { include: "#comments" }
   { include: "#number" }
@@ -737,6 +738,16 @@ repository:
       }
     ]
 
+  keyword_with_string:
+    comment: "Keywords with string input"
+    match: "(clear|hold|grid|save|close)[ \\t]+(.*)"
+    name: "meta.keyword_with_string.matlab"
+    captures:
+      2: patterns: [
+        { include: "#input_string"}
+        { include: "#comments"}
+      ]
+
   not_equal_invalid:
     comment: "Not equal is written ~= not !=."
     match: "\\s*!=\\s*"
@@ -843,6 +854,10 @@ repository:
   variable_persistent:
     match: "\\b[a-zA-Z]\\w*\\b"
     name: "meta.variable.persistent.matlab"
+
+  input_string:
+    match: "\\b[-]*[a-zA-Z]\\w*\\b"
+    name: "string.input.matlab"
 
   variable_assignment:
     comment: "Incomplete variable assignment."
