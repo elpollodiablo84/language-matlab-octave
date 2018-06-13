@@ -10,8 +10,10 @@
   "repository": "https://github.com/elpollodiablo84/language-matlab-plus",
   "license": "MIT",
   "engines": {
-    "atom": ">=1.0.0"
+    "atom": ">=1.0.0 <2.0.0"
   },
-  "main": "./lib/main",
-  "dependencies": {}
+  "main": "./lib/main.js",
+  "dependencies": {
+    "atom-space-pen-views": ">=2.0.5"
+  }
 }
