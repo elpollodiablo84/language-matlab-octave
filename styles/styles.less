@@ -4,16 +4,13 @@
   color: #82AAFF;
 }
 
-.code-section {
+.section-line {
   border-top: 1px solid @syntax-selection-color;
-  display: block;
+  margin-top: -1px;
 }
 
 atom-text-editor {
   .syntax--source.syntax--matlab {
-    .syntax--comment.syntax--line.syntax--double-percentage {
-      .code-section
-    }
     .syntax--meta.syntax--variable.syntax--persistent {
       .variable-persistent
     }

@@ -11,7 +11,7 @@ function out = test2(in, index_in) % Comment
     index = index_in + 1;
     a = a*3 + c;
 
-    testStruct.index = index; % properties should not be highlighted
+    testStruct.index = index; % Properties should not be highlighted
 
     %% Test section in function
     out = new_fun(index, in);
@@ -34,7 +34,11 @@ end
 function y = secondaryFunction(x, c)
     persistent test
     if isempty(test)
+        %% Section
         test = x;
+    else
+        %% Section
+        test = 0;
     end
 
     index = test;
