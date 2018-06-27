@@ -30,7 +30,7 @@ function out = test2(in, index_in) % Comment
     end
 end
 
-% 'index' and 'c' should not be highlighted
+%% 'index' and 'c' should not be highlighted
 function y = secondaryFunction(x, c)
     persistent test
     if isempty(test)
