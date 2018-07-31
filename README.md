@@ -7,7 +7,7 @@ Originally converted from the TextMate Bundle https://github.com/textmate/matlab
 
 ### Features
 - A lot of corrections and optimizations from the original conversion.
-- Code sections borders.
+- Code sections borders (with a relative *providedService*).
 - Code sections folding.
 - Persistent variables highlighting like in the default MATLAB editor. You can change the color in your [stylesheet](https://flight-manual.atom.io/using-atom/sections/basic-customization/#style-tweaks) by adding
 ~~~css

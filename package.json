@@ -1,6 +1,6 @@
 {
   "name": "language-matlab-plus",
-  "version": "1.6.0",
+  "version": "1.7.0",
   "description": "Matlab language support in Atom",
   "keywords": [
     "MATLAB",
@@ -11,6 +11,14 @@
   "license": "MIT",
   "engines": {
     "atom": ">=1.0.0 <2.0.0"
+  },
+  "providedServices": {
+    "section-bounds": {
+      "description": "Get the section bounds for a line",
+      "versions": {
+        "1.7.0": "provideSectionBounds"
+      }
+    }
   },
   "main": "./lib/main.js",
   "dependencies": {
