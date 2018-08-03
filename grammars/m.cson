@@ -740,7 +740,7 @@ repository:
 
   keyword_with_string:
     comment: "Keywords with string input"
-    match: "(clear|hold|grid|save|close)[ \\t]+(.*)"
+    match: "(clear|hold|grid|save|close)[ \\t]+([^,;\n]+)"
     name: "meta.keyword_with_string.matlab"
     captures:
       2: patterns: [

@@ -10,7 +10,7 @@ fprintf(fid, "test1 + ""%s + ''test%.5f", "test2", 3e-2);  % Escaping "" in stri
 cmd = sprintf('test1 + ""%s + ''test%.5f', 'test2', 3e-2); % Escaping '' in char array
 !shutdown
 
-clear something you want to clear
+clear something you want to clear; hold on, grid off % Comment
 
 %%
 C = 1; % <-- This line shouldn't be a comment if you put a space after %%
