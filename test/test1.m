@@ -11,6 +11,10 @@ cmd = sprintf('test1 + ""%s + ''test%.5f', 'test2', 3e-2); % Escaping '' in char
 !shutdown
 
 clear something you want to clear; hold on, grid off % Comment
+print ./this_is a_string & also->this; clearvars -except A1;
+command > not_a_input
+
+A4 = {B C; not_a_command not_a_input};
 
 %%
 C = 1; % <-- This line shouldn't be a comment if you put a space after %%

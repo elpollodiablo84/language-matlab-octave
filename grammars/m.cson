@@ -158,7 +158,7 @@ repository:
     end: "\\]"
     endCaptures:
       0: name: "meta.brackets.matlab"
-    patterns: [{ include: "$self" }]
+    patterns: [{ include: "#patterns_in_parens" }]
 
   builtin_keywords:
     patterns: [
@@ -634,9 +634,7 @@ repository:
         beginCaptures:
           0: name: "comment.line.double-percentage.matlab"
           1: name: "punctuation.double-percentage.comment.matlab"
-        end: "$" # "(?=^[ \\t]*(%%))"
-        # patterns: [{ include: "$self" }]
-        # name: "meta.section.matlab"
+        end: "$"
       }
       {
         begin: "%\\{"
@@ -676,10 +674,7 @@ repository:
     end: "\\}"
     endCaptures:
       0: name: "meta.brackets.curly.matlab"
-    patterns: [
-      { include: "#end_in_parens" }
-      { include: "$self" }
-    ]
+    patterns: [{ include: "#patterns_in_parens" }]
 
   end_in_parens:
     comment: "end as operator symbol"
@@ -740,7 +735,7 @@ repository:
 
   keyword_with_string:
     comment: "Keywords with string input"
-    match: "(clear|hold|grid|save|close)[ \\t]+([^,;\n]+)"
+    match: "(?<=[;,]|^)\\s*([a-zA-Z]\\w*)[ \\t]+(?:=|\\(|\\)|<\\s|>\\s|\\+\\s|-\\s|\\*\\s|\\.\\*\\s|/\\s|\\./\\s|\\\\\\s|\\.\\\\\\s|\\^\\s|\\.\\^\\s|([^,;\\n]*))"
     name: "meta.keyword_with_string.matlab"
     captures:
       2: patterns: [
@@ -771,9 +766,29 @@ repository:
     end: "\\)"
     endCaptures:
       0: name: "meta.parens.matlab"
+    patterns: [{ include: "#patterns_in_parens" }]
+
+  patterns_in_parens:
     patterns: [
+      { include: "#classdef" }
+      { include: "#function" }
+      { include: "#blocks" }
+      { include: "#constants_override" }
+      { include: "#brackets" }
+      { include: "#curlybrackets" }
+      { include: "#parens" }
+      { include: "#persistent" }
+      { include: "#string" }
+      { include: "#transpose" }
+      { include: "#double_quote" }
+      { include: "#operators" }
+      { include: "#builtin_keywords" }
+      { include: "#comments" }
+      { include: "#number" }
+      { include: "#variable_invalid" }
+      { include: "#not_equal_invalid" }
+      { include: "#variable_assignment" }
       { include: "#end_in_parens" }
-      { include: "$self" }
     ]
 
   persistent:
@@ -856,7 +871,7 @@ repository:
     name: "meta.variable.persistent.matlab"
 
   input_string:
-    match: "\\b[-]*[a-zA-Z]\\w*\\b"
+    match: "[^\\s%][^\\s]*"
     name: "string.input.matlab"
 
   variable_assignment:
