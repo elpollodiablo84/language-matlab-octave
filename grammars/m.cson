@@ -59,7 +59,7 @@ repository:
           2: name: "keyword.control.if.matlab"
           3:
              name: "meta.if-condition.matlab"
-             patterns: [{ include: "$self" }]
+             patterns: [{ include: "#patterns_not_kws" }]
         end: "\\s*(end)\\b"
         endCaptures:
           1: name: "keyword.control.end.if.matlab"
@@ -72,7 +72,7 @@ repository:
               2: name: "keyword.control.elseif.matlab"
               3:
                  name: "meta.elseif-condition.matlab"
-                 patterns: [{ include: "$self" }]
+                 patterns: [{ include: "#patterns_not_kws" }]
           }
           {
             name: "meta.else.matlab"
@@ -89,7 +89,7 @@ repository:
           2: name: "keyword.control.while.matlab"
           3:
              name: "meta.while-condition.matlab"
-             patterns: [{ include: "$self" }]
+             patterns: [{ include: "#patterns_not_kws" }]
         end: "^\\s*(end)\\b"
         endCaptures:
           1: name: "keyword.control.end.while.matlab"
@@ -102,7 +102,7 @@ repository:
           2: name: "keyword.control.switch.matlab"
           3:
              name: "meta.switch-expression.matlab"
-             patterns: [{ include: "$self" }]
+             patterns: [{ include: "#patterns_not_kws" }]
         end: "^\\s*(end)\\b"
         endCaptures:
           1: name: "keyword.control.end.switch.matlab"
@@ -115,7 +115,7 @@ repository:
               2: name: "keyword.control.case.matlab"
               3:
                  name: "meta.case-expression.matlab"
-                 patterns: [{ include: "$self" }]
+                 patterns: [{ include: "#patterns_not_kws" }]
           }
           {
             name: "meta.otherwise.matlab"
@@ -158,7 +158,7 @@ repository:
     end: "\\]"
     endCaptures:
       0: name: "meta.brackets.matlab"
-    patterns: [{ include: "#patterns_in_parens" }]
+    patterns: [{ include: "#patterns_not_kws" }]
 
   builtin_keywords:
     patterns: [
@@ -674,7 +674,7 @@ repository:
     end: "\\}"
     endCaptures:
       0: name: "meta.brackets.curly.matlab"
-    patterns: [{ include: "#patterns_in_parens" }]
+    patterns: [{ include: "#patterns_not_kws" }]
 
   end_in_parens:
     comment: "end as operator symbol"
@@ -735,9 +735,10 @@ repository:
 
   keyword_with_string:
     comment: "Keywords with string input"
-    match: "(?<=[;,]|^)\\s*([a-zA-Z]\\w*)[ \\t]+(?:=|\\(|\\)|<\\s|>\\s|\\+\\s|-\\s|\\*\\s|\\.\\*\\s|/\\s|\\./\\s|\\\\\\s|\\.\\\\\\s|\\^\\s|\\.\\^\\s|([^,;\\n]*))"
+    match: "(?<=[;,]|^)\\s*(?!persistent\\s)([a-zA-Z]\\w*)[ \\t]+(?:=|\\(|\\)|<\\s|>\\s|\\+\\s|-\\s|\\*\\s|\\.\\*\\s|/\\s|\\./\\s|\\\\\\s|\\.\\\\\\s|\\^\\s|\\.\\^\\s|([^,;\\n]*))"
     name: "meta.keyword_with_string.matlab"
     captures:
+      1: name: "meta.command.matlab"
       2: patterns: [
         { include: "#input_string"}
         { include: "#comments"}
@@ -766,9 +767,9 @@ repository:
     end: "\\)"
     endCaptures:
       0: name: "meta.parens.matlab"
-    patterns: [{ include: "#patterns_in_parens" }]
+    patterns: [{ include: "#patterns_not_kws" }]
 
-  patterns_in_parens:
+  patterns_not_kws:
     patterns: [
       { include: "#classdef" }
       { include: "#function" }
