@@ -153,11 +153,11 @@ repository:
   brackets:
     begin: "\\["
     beginCaptures:
-      0: name: "meta.brackets.matlab"
+      0: name: "meta.brackets.open.matlab"
     contentName: "meta.brackets.matlab"
     end: "\\]"
     endCaptures:
-      0: name: "meta.brackets.matlab"
+      0: name: "meta.brackets.closed.matlab"
     patterns: [{ include: "#patterns_not_kws" }]
 
   builtin_keywords:
@@ -486,7 +486,7 @@ repository:
         end: "^\\s*(end)\\b"
         endCaptures:
           1: name: "keyword.control.end.class.matlab"
-        name: "meta.class.matlab"
+        name: "meta.class-definition.matlab"
         patterns: [
           {
             begin: """
@@ -669,11 +669,11 @@ repository:
   curlybrackets:
     begin: "\\{"
     beginCaptures:
-      0: name: "meta.brackets.curly.matlab"
-    contentName: "meta.brackets.curly.matlab"
+      0: name: "meta.curly.open.matlab"
+    contentName: "meta.curly.matlab"
     end: "\\}"
     endCaptures:
-      0: name: "meta.brackets.curly.matlab"
+      0: name: "meta.curly.closed.matlab"
     patterns: [{ include: "#patterns_not_kws" }]
 
   end_in_parens:
@@ -735,7 +735,7 @@ repository:
 
   keyword_with_string:
     comment: "Keywords with string input"
-    match: "(?<=[;,]|^)\\s*(?!persistent\\s)([a-zA-Z]\\w*)[ \\t]+(?:=|\\(|\\)|<\\s|>\\s|\\+\\s|-\\s|\\*\\s|\\.\\*\\s|/\\s|\\./\\s|\\\\\\s|\\.\\\\\\s|\\^\\s|\\.\\^\\s|([^,;\\n]*))"
+    match: "(?<=[;,]|^)\\s*(?!persistent\\s)([a-zA-Z]\\w*)[ \\t]+(?:\\(|\\)|<\\s|>\\s|\\+\\s|-\\s|\\*\\s|\\.\\*\\s|/\\s|\\./\\s|\\\\\\s|\\.\\\\\\s|\\^\\s|\\.\\^\\s|([^\\s*=][^,;\\n]*))"
     name: "meta.keyword_with_string.matlab"
     captures:
       1: name: "meta.command.matlab"
@@ -762,11 +762,11 @@ repository:
   parens:
     begin: "\\("
     beginCaptures:
-      0: name: "meta.parens.matlab"
+      0: name: "meta.parens.open.matlab"
     contentName: "meta.parens.matlab"
     end: "\\)"
     endCaptures:
-      0: name: "meta.parens.matlab"
+      0: name: "meta.parens.closed.matlab"
     patterns: [{ include: "#patterns_not_kws" }]
 
   patterns_not_kws:
