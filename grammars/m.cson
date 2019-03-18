@@ -121,7 +121,6 @@ repository:
             name: "meta.otherwise.matlab"
             match: "(^\\s*)(otherwise)\\b"
             captures:
-              0: name: "meta.otherwise-expression.matlab"
               2: name: "keyword.control.otherwise.matlab"
           }
           { include: "$self" }
@@ -751,7 +750,7 @@ repository:
 
   number:
     comment: "Valid numbers: 1, .1, 1.1, .1e1, 1.1e1, 1e1, 1i, 1j, 1e2j"
-    match: "(?<=[\\s\\-\\+\\*\\/\\\\=:\\[\\(\\{,;]|^)\\d*\\.?\\d+([eE][+-]?\\d)?([0-9&&[^\\.]])*(i|j)?\\b"
+    match: "(?<=[\\s\\-\\+\\*\\/\\\\=:\\[\\(\\{,;^])\\d*\\.?\\d+([eE][+-]?\\d)?([0-9&&[^\\.]])*(i|j)?\\b"
     name: "constant.numeric.matlab"
 
   operators:

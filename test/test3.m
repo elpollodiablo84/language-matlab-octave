@@ -4,7 +4,10 @@ if a1
     a = 1;
     %% IF
     b = 2;
-elseif a2
+
+    elseiffo = false; % False elseif!
+    clear elseiffo
+elseif (a2 == 3)
     %% ELSEIF
     for i = 1:10
         %% FOR
@@ -27,9 +30,14 @@ elseif a3
             d = 0;
         end
 
+        catching = 0; % False catch!
+        clear catching
+
         if fun(d)
             %% IF
             d = d + 1;
+            endGame = 1; % False end!
+            clear endGame
         end
     catch
         %% CATCH
@@ -48,6 +56,18 @@ function y = fun(x)
     function z = inner(x)
         %% FUNCTION INNER
         z = x;
+        switch x
+            %% SWITCH
+            case 1
+                %% CASE
+                z = 1;
+                caseee = 2; % False case!
+                clear caseee
+
+            otherwise
+                %% OTHERWISE
+                z = 2;
+        end
     end
 
     y = y + 1;
