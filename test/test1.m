@@ -30,7 +30,7 @@ if (condition == 1) % Comment
 elseif (condition == 2) % Comment
     body = 2;
 
-    if (body == 2), do_that(); end
+    if (body == 2), false_end(); end
 
 else % Comment
     body = 3;

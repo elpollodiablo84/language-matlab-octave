@@ -34,7 +34,7 @@ repository:
           3:
              name: "meta.for-quantity.matlab"
              patterns: [{ include: "$self" }]
-        end: "\\s*(end)\\b"
+        end: "\\s*\\b(end)\\b"
         endCaptures:
           1: name: "keyword.control.end.for.matlab"
         name: "meta.for.matlab"
@@ -47,7 +47,7 @@ repository:
           3:
              name: "meta.parfor-quantity.matlab"
              patterns: [{ include: "$self" }]
-        end: "^\\s*(end)\\b"
+        end: "^\\s*\\b(end)\\b"
         endCaptures:
           1: name: "keyword.control.end.parfor.matlab"
         name: "meta.parfor.matlab"
@@ -60,7 +60,7 @@ repository:
           3:
              name: "meta.if-condition.matlab"
              patterns: [{ include: "#patterns_not_kws" }]
-        end: "\\s*(end)\\b"
+        end: "\\s*\\b(end)\\b"
         endCaptures:
           1: name: "keyword.control.end.if.matlab"
         name: "meta.if.matlab"
@@ -90,7 +90,7 @@ repository:
           3:
              name: "meta.while-condition.matlab"
              patterns: [{ include: "#patterns_not_kws" }]
-        end: "^\\s*(end)\\b"
+        end: "^\\s*\\b(end)\\b"
         endCaptures:
           1: name: "keyword.control.end.while.matlab"
         name: "meta.while.matlab"
@@ -103,7 +103,7 @@ repository:
           3:
              name: "meta.switch-expression.matlab"
              patterns: [{ include: "#patterns_not_kws" }]
-        end: "^\\s*(end)\\b"
+        end: "^\\s*\\b(end)\\b"
         endCaptures:
           1: name: "keyword.control.end.switch.matlab"
         name: "meta.switch.matlab"
@@ -130,7 +130,7 @@ repository:
         begin: "(^\\s*)\\b(try)\\b"
         beginCaptures:
           2: name: "keyword.control.try.matlab"
-        end: "^\\s*(end)\\b"
+        end: "^\\s*\\b(end)\\b"
         endCaptures:
           1: name: "keyword.control.end.try.matlab"
         name: "meta.try.matlab"

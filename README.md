@@ -15,6 +15,3 @@ Originally converted from the TextMate Bundle https://github.com/textmate/matlab
   color: #82AAFF; /*Modify this value to change the color*/
 }
 ~~~
-
-### Planned Features
-- [tree-sitter](https://github.com/tree-sitter/tree-sitter) grammar.
