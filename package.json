@@ -1,7 +1,7 @@
 {
   "name": "language-matlab-plus",
   "version": "1.10.0",
-  "description": "Matlab language support in Atom",
+  "description": "MATLAB language support in Atom with section borders, section folding and persistent highlighting",
   "keywords": [
     "MATLAB",
     "grammar",
