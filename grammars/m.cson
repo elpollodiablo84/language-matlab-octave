@@ -28,10 +28,10 @@ repository:
   blocks:
     patterns: [
       {
-        begin: "(^\\s*)(for)\\s+([^,\n]+)"
+        begin: "^\\s*(for)\\s*((?<=\\s)[^,\\n]+|\\([^,\\n]+\\))"
         beginCaptures:
-          2: name: "keyword.control.for.matlab"
-          3:
+          1: name: "keyword.control.for.matlab"
+          2:
              name: "meta.for-quantity.matlab"
              patterns: [{ include: "$self" }]
         end: "\\s*\\b(end)\\b"
@@ -41,10 +41,10 @@ repository:
         patterns: [{ include: "$self" }]
       }
       {
-        begin: "(^\\s*)(parfor)\\s+([^,\n]+)"
+        begin: "^\\s*(parfor)\\s*((?<=\\s)[^,\\n]+|\\([^,\\n]+\\))"
         beginCaptures:
-          2: name: "keyword.control.parfor.matlab"
-          3:
+          1: name: "keyword.control.parfor.matlab"
+          2:
              name: "meta.parfor-quantity.matlab"
              patterns: [{ include: "$self" }]
         end: "^\\s*\\b(end)\\b"
@@ -54,10 +54,10 @@ repository:
         patterns: [{ include: "$self" }]
       }
       {
-        begin: "(^\\s*)(if)\\s+([^,\n]+)"
+        begin: "^\\s*(if)\\s*((?<=\\s)[^,\\n]+|\\([^,\\n]+\\))"
         beginCaptures:
-          2: name: "keyword.control.if.matlab"
-          3:
+          1: name: "keyword.control.if.matlab"
+          2:
              name: "meta.if-condition.matlab"
              patterns: [{ include: "#patterns_not_kws" }]
         end: "\\s*\\b(end)\\b"
@@ -67,27 +67,27 @@ repository:
         patterns: [
           {
             name: "meta.elseif.matlab"
-            match: "(^\\s*)(elseif)\\s+([^,\n]+)"
+            match: "^\\s*(elseif)\\s*((?<=\\s)[^,\\n]+|\\([^,\\n]+\\))"
             captures:
-              2: name: "keyword.control.elseif.matlab"
-              3:
+              1: name: "keyword.control.elseif.matlab"
+              2:
                  name: "meta.elseif-condition.matlab"
                  patterns: [{ include: "#patterns_not_kws" }]
           }
           {
             name: "meta.else.matlab"
-            match: "(^\\s*)\\b(else)\\b"
+            match: "^\\s*\\b(else)\\b"
             captures:
-              2: name: "keyword.control.else.matlab"
+              1: name: "keyword.control.else.matlab"
           }
           { include: "$self" }
         ]
       }
       {
-        begin: "(^\\s*)(while)\\s+([^,\n]+)"
+        begin: "^\\s*(while)\\s*((?<=\\s)[^,\\n]+|\\([^,\\n]+\\))"
         beginCaptures:
-          2: name: "keyword.control.while.matlab"
-          3:
+          1: name: "keyword.control.while.matlab"
+          2:
              name: "meta.while-condition.matlab"
              patterns: [{ include: "#patterns_not_kws" }]
         end: "^\\s*\\b(end)\\b"
@@ -97,10 +97,10 @@ repository:
         patterns: [{ include: "$self" }]
       }
       {
-        begin: "(^\\s*)(switch)\\s+([^,\n]+)"
+        begin: "^\\s*(switch)\\s*((?<=\\s)[^,\\n]+|\\([^,\\n]+\\))"
         beginCaptures:
-          2: name: "keyword.control.switch.matlab"
-          3:
+          1: name: "keyword.control.switch.matlab"
+          2:
              name: "meta.switch-expression.matlab"
              patterns: [{ include: "#patterns_not_kws" }]
         end: "^\\s*\\b(end)\\b"
@@ -110,26 +110,26 @@ repository:
         patterns: [
           {
             name: "meta.case.matlab"
-            match: "(^\\s*)(case)\\s+([^,\n]+)?"
+            match: "^\\s*(case)\\s*((?<=\\s)[^,\\n]+|\\([^,\\n]+\\))"
             captures:
-              2: name: "keyword.control.case.matlab"
-              3:
+              1: name: "keyword.control.case.matlab"
+              2:
                  name: "meta.case-expression.matlab"
                  patterns: [{ include: "#patterns_not_kws" }]
           }
           {
             name: "meta.otherwise.matlab"
-            match: "(^\\s*)(otherwise)\\b"
+            match: "^\\s*(otherwise)\\b"
             captures:
-              2: name: "keyword.control.otherwise.matlab"
+              1: name: "keyword.control.otherwise.matlab"
           }
           { include: "$self" }
         ]
       }
       {
-        begin: "(^\\s*)\\b(try)\\b"
+        begin: "^\\s*\\b(try)\\b"
         beginCaptures:
-          2: name: "keyword.control.try.matlab"
+          1: name: "keyword.control.try.matlab"
         end: "^\\s*\\b(end)\\b"
         endCaptures:
           1: name: "keyword.control.end.try.matlab"
@@ -137,10 +137,10 @@ repository:
         patterns: [
           {
             name: "meta.catch.matlab"
-            match: "(^\\s*)(catch)\\s+([^,\n]+)?"
+            match: "^\\s*(catch)\\s+([^,\n]+)?"
             captures:
-              2: name: "keyword.control.catch.matlab"
-              3:
+              1: name: "keyword.control.catch.matlab"
+              2:
                 name: "meta.catch-exception.matlab"
                 patterns: [{ include: "$self" }]
           }
