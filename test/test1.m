@@ -18,7 +18,7 @@ A4 = {B C; not_a_command not_a_input};
 
 %%
 C = 1; % <-- This line shouldn't be a comment if you put a space after %%
-% Litle comment
+% Little comment
 A = 3*C;
 %{
 Comment block
@@ -36,8 +36,11 @@ else % Comment
     body = 3;
 end
 
+if(test == 'te,st'), body = 4; end % Weird but legit
+if[c, d] == [a, b], body = 5; end  % Weird but legit
+
 %% while
-while condition
+while cell2mat(condition)
     body = 1;
 end
 
@@ -58,7 +61,7 @@ catch exception %% Comment but not a double percentage comment
 end
 
 %% for
-for j = 1:M, do_this(); end
+for j = 1:M, do_this(); end % Inline
 
 for i = 1:n % Comment
     body = body + 1;

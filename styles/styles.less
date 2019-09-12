@@ -1,20 +1,20 @@
 @import "syntax-variables";
 
-.variable-persistent {
-  color: #82AAFF;
-}
-
-.section-start-line {
-  border-top: 1px solid @syntax-selection-color;
-  margin-top: -1px;
-}
-
-.section-end-line {
-  border-bottom: 1px solid @syntax-selection-color;
-  margin-top: -1px;
-}
-
 atom-text-editor {
+  .variable-persistent {
+    color: #82AAFF;
+  }
+
+  .section-start-line {
+    border-top: 1px solid @syntax-indent-guide-color;
+    margin-top: -1px;
+  }
+
+  .section-end-line {
+    border-bottom: 1px solid @syntax-indent-guide-color;
+    margin-top: -1px;
+  }
+
   .syntax--source.syntax--matlab {
     .syntax--meta.syntax--variable.syntax--persistent {
       .variable-persistent

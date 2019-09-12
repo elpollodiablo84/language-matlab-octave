@@ -15,3 +15,4 @@ Originally converted from the TextMate Bundle https://github.com/textmate/matlab
   color: #82AAFF; /*Modify this value to change the color*/
 }
 ~~~
+- Support functions are disabled by default. If you want to reenable them, decomment the relative line of `builtin_keywords` in the grammar file `grammars\m.cson`.
