@@ -27,7 +27,7 @@ Comment block
 %% if/elseif/else
 if (condition == 1) % Comment
     body = 1;
-elseif (condition == 2) % Comment
+elseif (condition == 2) % Comment, still a comment
     body = 2;
 
     if (body == 2), false_end(); end
@@ -36,8 +36,10 @@ else % Comment
     body = 3;
 end
 
-if(test == 'te,st'), body = 4; end % Weird but legit
+if(test == "te,st"), body = 4; end % Weird but legit
 if[c, d] == [a, b], body = 5; end  % Weird but legit
+
+if (test == "test"), do_this(); elseif (test == test), do_that('that'); elseif (test <= test), dont_do_that(); else, stop(); end  % One line to rule them all
 
 %% while
 while cell2mat(condition)
